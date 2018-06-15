@@ -9,9 +9,15 @@ const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 
 
-//initiate the persistant storage
-(async () => {
+
+const server = Hapi.server({
+    port: 3000,
+    host: 'localhost'
+});
+
+const init = async () => {
     
+    //initiate the persistent storage
     await storage.init({
         dir: './data',
         stringify: JSON.stringify,
@@ -28,6 +34,7 @@ const HapiSwagger = require('hapi-swagger');
         console.log(content)
     });
     
+    
     let fibonacci = await storage.getItem('fibonacci');
 
     if(! fibonacci) {
@@ -41,50 +48,9 @@ const HapiSwagger = require('hapi-swagger');
 
     fibonacci = await storage.getItem('fibonacci');
     console.log('Fibonacci is ' + fibonacci); 
-})();
+    
 
-
-
-const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
-});
-
-// some test routes
-server.route({
-    path: '/foobar/test',
-    method: 'GET',
-    handler () {
-        return {};
-      },
-    options: {
-      tags: ['api'],
-      description: 'My route description',
-      notes: 'My route notes',
-      
-    }
-});
-   
-server.route({
-    path: '/foobar/{foo}/{bar}',
-    method: 'GET',
-    handler () {
-        return {};
-    }, 
-    options: {
-      tags: ['api'],
-      validate: {
-        params: {
-          foo: Joi.string().required().description('test'),
-          bar: Joi.string().required()
-        }
-      }
-    }
-});
-
-
-const init = async () => {
-
+    // Register plugins for Hapi server
     await server.register([
         Inert,
         Vision,
@@ -101,9 +67,12 @@ const init = async () => {
         }
     ]);
 
+    // Start Hapi server
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
 };
+
+
 
 process.on('unhandledRejection', (err) => {
 
