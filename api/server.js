@@ -8,12 +8,29 @@ const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 
-
-
-const server = Hapi.server({
+const hapiOptions = {
+    host: 'localhost',
     port: 3000,
-    host: 'localhost'
-});
+    routes: {
+      validate: {
+        failAction: async (request, h, err) => {
+          if (process.env.NODE_ENV === 'production') {
+            // In prod, log a limited error message and throw the default Bad Request error.
+            console.error('ValidationError:', err.message); // Better to use an actual logger here.
+            throw Boom.badRequest(`Invalid request payload input`);
+          } else {
+            // During development, log and respond with the full error.
+            console.error(err);
+            throw err;
+          }
+        }
+      }
+    }
+  };
+
+const server = Hapi.server(hapiOptions);
+
+server.app.storage = storage;
 
 const init = async () => {
     
@@ -34,7 +51,7 @@ const init = async () => {
         console.log(content)
     });
     
-    
+    /*
     let fibonacci = await storage.getItem('fibonacci');
 
     if(! fibonacci) {
@@ -48,7 +65,7 @@ const init = async () => {
 
     fibonacci = await storage.getItem('fibonacci');
     console.log('Fibonacci is ' + fibonacci); 
-    
+    */
 
     // Register plugins for Hapi server
     await server.register([

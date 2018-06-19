@@ -9,27 +9,65 @@ exports.plugin = {
     version: '1.0.0',
     register: async function (server, options) {
 
-        const db = server.app.db;
+        const storage = server.app.storage;
 
         server.route({
             method: 'GET',
             path: '/resources',
             options: {
               tags: ['api'],
-              description: 'My route description',
+              description: 'GET: read resources',
               notes: 'My route notes'
             },
-            handler: function (request, h) {
+            handler: async function (request, h) {
 
-                db.resources.find((err, docs) => {
+                let resources = await storage.getItem('resources');
+                
+                if(! resources ){
+                    return Boom.notFound();
+                }
 
-                    if (err) {
-                        return reply(Boom.wrap(err, 'Internal MongoDB error'));
-                    }
-
-                    reply(docs);
-                });
+                return resources;
+                
             }
+        });
+
+        server.route({
+            method: 'POST', 
+            path: '/resources',
+            options: {
+                tags: ['api'],
+                description: 'POST: add resource',
+                notes: 'My route notes',
+                payload: {
+                  allow: [ 'application/json' ]
+                },
+                validate: {
+                    payload: {
+                        name: Joi.string().min(1).max(50).required(),
+                        array: Joi.array().items(
+                            Joi.array().items(
+                                Joi.string().required(), 
+                                Joi.number().integer().required()
+                            )
+                        )
+                    }
+                }
+            },
+            handler: async function (request, h) {
+
+                const resources = request.payload;
+
+                await storage.setItem('resources', resources)
+                    .then(() => {
+                        console.log('Stored successfully');
+                        return 'Success';
+                    })
+                    .catch(err => console.error(err));
+ 
+                return resources;
+            }
+              
         });
 
         // etc ...
