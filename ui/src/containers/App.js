@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Picker from '../components/Picker'
-import Resource from '../components/Resource'
 
 import {addResource} from '../actions/resourcesActions'
-import ProjectList from '../components/ProjectList';
 import VisibleProjectList from '../containers/VisibleProjectList';
 import ResourceList from '../components/ResourceList';
 import AddProject from './AddProject';

@@ -4,12 +4,14 @@ import logger from 'redux-logger'
 
 import projects from './reducers/projectsReducer'
 import resources from './reducers/resourcesReducer'
+import utilizations from './reducers/utilizationsReducer'
 
 
 export default createStore(
   combineReducers({
     projects,
-    resources
+    resources,
+    utilizations
   }),
   {},
   applyMiddleware(logger, thunk)
