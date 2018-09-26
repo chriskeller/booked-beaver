@@ -7,13 +7,13 @@ const projectsReducer = ( state = [], action) => {
             state = [...state, {
                 id: action.id,
                 text: action.text,
-                completed: false
+                collapsed: true
                 }]
             break;
         case 'TOGGLE_PROJECT':
             return state.map(project =>
             (project.id === action.id)
-              ? {...project, completed: !project.completed}
+              ? {...project, collapsed: !project.collapsed}
               : project
             )
         default:

@@ -4,11 +4,14 @@ import Project from './Project'
 
 const ProjectList = ({ projects, toggleProject }) => {
   return (
-    <ul>
-      {projects.map((project, index) => {
-        return <Project key={index} {...project} onClick={() => toggleProject(index)} />;
-      })}
-    </ul>
+    <table>
+      <tbody>
+        {projects.map((project, index) => {
+          return <Project key={index} {...project} onClick={() => toggleProject(index)} />;
+        })}
+      </tbody>
+    </table>
+      
   );
 }
 
@@ -16,7 +19,7 @@ ProjectList.propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
+      collapsed: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
