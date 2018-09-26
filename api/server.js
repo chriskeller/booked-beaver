@@ -10,7 +10,7 @@ const HapiSwagger = require('hapi-swagger');
 
 const hapiOptions = {
     host: 'localhost',
-    port: 3000,
+    port: 7500,
     routes: {
       validate: {
         failAction: async (request, h, err) => {
@@ -75,6 +75,7 @@ const init = async () => {
         {
           plugin: HapiSwagger,
           options: {
+            jsonPath: '/swagger.json',
             info: {
               title: 'Booked Beaver API',
               description: 'REST API for Booked Beaver',

@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Project from './Project'
 
-const ProjectList = ({ projects, onProjectClick }) => (
-  <ul>
-    {projects.map((project, index) => (
-      <Project key={index} {...project} onClick={() => onProjectClick(index)} />
-    ))}
-  </ul>
-)
+const ProjectList = ({ projects, toggleProject }) => {
+  return (
+    <ul>
+      {projects.map((project, index) => {
+        return <Project key={index} {...project} onClick={() => toggleProject(index)} />;
+      })}
+    </ul>
+  );
+}
 
 ProjectList.propTypes = {
   projects: PropTypes.arrayOf(

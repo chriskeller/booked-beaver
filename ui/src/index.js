@@ -1,16 +1,13 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
+// Do this once before any other code in your app
+import 'babel-polyfill'
+
+import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import './index.css';
-import rootReducer from './reducers'
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './containers/App'
+import registerServiceWorker from './registerServiceWorker'
 
-//ReactDOM.render(<App />, document.getElementById('root'));
-
-const store = createStore(rootReducer)
+import store from './store'
 
 render(
   <Provider store={store}>

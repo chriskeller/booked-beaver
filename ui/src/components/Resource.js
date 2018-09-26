@@ -1,43 +1,21 @@
-import React from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
-import cellEditFactory from 'react-bootstrap-table2-editor';
-import data from './data.json';
-import swaggerMiddleware from '../helpers/swaggerMiddleware';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-//swaggerMiddleware = new swaggerMiddleware();
+const Resource = ({ onClick, completed, text }) => (
+  <li
+    onClick={onClick}
+    style={ {
+      textDecoration: completed ? 'line-through' : 'none'
+    }}
+  >
+    {text}
+  </li>
+)
 
-export default class Resourcelist extends React.Component {
+Resource.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  completed: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
+}
 
-
-    render() {
-        
-        const columns = [{
-        dataField: 'id',
-        text: 'ID',
-        editable: false
-        }, {
-        dataField: 'name',
-        text: 'Name',
-        editable: false
-        }, {
-        dataField: 'availability',
-        text: 'Availability'
-        }];
-
-        return (
-            <BootstrapTable 
-                keyField='id' 
-                data={ data } 
-                columns={ columns } 
-                cellEdit={ cellEditFactory({ 
-                    mode: 'click',
-                    blurToSave: true, 
-                    nonEditableRows: () => [0]
-                }) }
-                striped
-                hover
-                condensed
-            />
-        )
-      }
-  }
+export default Resource

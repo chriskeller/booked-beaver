@@ -8,7 +8,7 @@ const Project = ({ onClick, completed, text }) => (
       textDecoration: completed ? 'line-through' : 'none'
     }}
   >
-    {text}
+    {text} ({completed ? 'completed' : 'ongoing'})
   </li>
 )
 

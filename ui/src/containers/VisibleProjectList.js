@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleProject } from '../actions'
+import { toggleProject } from '../actions/projectsActions'
 import ProjectList from '../components/ProjectList'
 
 const getVisibleProjects = (projects, filter) => {
@@ -10,6 +10,8 @@ const getVisibleProjects = (projects, filter) => {
       return projects.filter(t => t.completed)
     case 'SHOW_ACTIVE':
       return projects.filter(t => !t.completed)
+    default: 
+      return projects
   }
 }
 
@@ -21,11 +23,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onProjectClick: id => {
-      dispatch(toggleProject(id))
+    toggleProject: id => dispatch(toggleProject(id))
     }
   }
-}
 
 const VisibleProjectList = connect(
   mapStateToProps,

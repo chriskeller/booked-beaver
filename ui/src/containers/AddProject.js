@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addProject } from '../actions'
+import { addProject } from '../actions/projectsActions'
 
 let AddProject = ({ dispatch }) => {
   let input
@@ -29,6 +29,6 @@ let AddProject = ({ dispatch }) => {
     </div>
   )
 }
-AddProject = connect()(AddProject)
 
-export default AddProject
+
+export default connect()(AddProject)
