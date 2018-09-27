@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addProject } from '../actions/projectsActions'
+import { addResource } from '../actions/resourcesActions'
 
-let AddProject = ({ dispatch }) => {
+let AddResource = ({ dispatch }) => {
   let input
 
   return (
@@ -12,25 +12,26 @@ let AddProject = ({ dispatch }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(addProject(input.value))
+          dispatch(addResource(input.value))
           input.value = ''
         }}
       >
+
       <div className='form-row'>
         <div className='col'>
-          <input ref={node => input = node} className='form-control form-control-sm' placeholder='Project name'/>
+          <input ref={node => input = node} className='form-control form-control-sm' placeholder='Resource name'/>
         </div>
         <div className='col'>
           <button type="submit" className='btn btn-outline-primary btn-sm'>
-            Add Project
+            Add Resource
           </button>
         </div>
       </div>
-      
+
       </form>
     </div>
   )
 }
 
 
-export default connect()(AddProject)
+export default connect()(AddResource)

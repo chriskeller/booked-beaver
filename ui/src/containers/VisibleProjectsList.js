@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { toggleProject } from '../actions/projectsActions'
 import ProjectList from '../components/ProjectList'
 
-const getVisibleProjects = (projects, utilizations, filter) => {
+export const getVisibleProjects = (projects, utilizations, filter) => {
 
   //attach resources to each project
   projects.forEach( project => attachResources( utilizations, project ))
@@ -19,21 +19,40 @@ const getVisibleProjects = (projects, utilizations, filter) => {
   }
 }
 
- // for a project, get the resources from utilizations and attach them
+ // for a project, get the resources with utilizations and attach them
  const attachResources = ( utilizations, project ) => {
   var resources = []
 
+  // iterate through all utilizations
   utilizations.forEach( utilization => {
-    // if it is the same project id, and not yet in the array
-    if( utilization.project === project.id && !resources.includes( utilization.resource )){
-      resources.push( utilization.resource )
+    
+    // if it is the same resource id
+    if( utilization.project === project.id ){
+      
+      // if the project has not yet been added to the array
+      if( !resources.includes( utilization.resource )){
+        var resource = {
+          id: utilization.resource,
+          text: 'todo',
+          utilizations: [{
+            period: 'period',
+            percentage: 0.1
+          }]
+        }
+        resources.push( resource )
+      }
+      else {
+        // else if the project is already in the array, add utilization
+        resource.utilizations.push( { period: 'period', percentage: 0.2 })
+      }
     }
   })
 
   project.resources = resources
 
   return project
- }
+}
+
 
 
 const mapStateToProps = state => {
@@ -48,9 +67,9 @@ const mapDispatchToProps = dispatch => {
     }
   }
 
-const VisibleProjectList = connect(
+const VisibleProjectsList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProjectList)
 
-export default VisibleProjectList
+export default VisibleProjectsList

@@ -4,26 +4,26 @@ import AddResourceToProject from '../containers/AddResourceToProject';
 
 const Project = ({ id, onClick, collapsed, text, resources }) => (
   <React.Fragment>
-  <tr
-    onClick={onClick}
-    style={ { border: '1px solid black' }}
-  >
-    <td style={ { border: '1px solid black' }}>{text}</td>
+  <tr onClick={onClick} className='table-light'>
+    <th scope='row'>{id}</th>
+    <td>{text}</td>
     <td>({collapsed ? 'collapsed' : 'visible'})</td>
   </tr>
   {resources.map((resource, index) => {
           return (
             <tr key={index} style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
-              <td style={ { border: '1px dotted black' }}>{index}</td>
-              <td style={ { border: '1px dotted black' }}>x</td>
+              <th scope='row'> </th>
+              <td>{resource.id}</td>
+              <td>{resource.text}</td>
             </tr>
           )
         })} 
   <tr style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
-      <td style={ { border: '1px dotted black' }}>   </td>
-      <td style={ { border: '1px dotted black' }}> 
+      <th scope='row'> </th>
+      <td> 
         <AddResourceToProject projectId={id}/>
       </td>
+      <td></td>
   </tr>
   </React.Fragment>
 )

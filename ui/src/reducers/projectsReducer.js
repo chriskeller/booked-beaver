@@ -8,7 +8,7 @@ const projectsReducer = ( state = [], action) => {
                 id: action.id,
                 text: action.text,
                 collapsed: true, 
-                resources: [1,2,3]       // an array of resource ids
+                resources: []       // an array of resource ids
                 }]
             break;
         case 'TOGGLE_PROJECT':

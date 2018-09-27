@@ -13,11 +13,12 @@ let AddResourceToProject = ({ dispatch, projectId }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(addResourceToProject(projectId, input.value))
+          dispatch(addResourceToProject(projectId, Number(input.value)))
           input.value = ''
         }}
       >
         <input
+            type='number'
           ref={node => {
             input = node
           }}

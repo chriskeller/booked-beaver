@@ -1,23 +1,20 @@
 
-const resourcesReducer = ( state = {
-    isFetching: false,
-    didInvalidate: false, 
-    resources: []
-}, action) => {
+const resourcesReducer = ( state = [], action) => {
 switch (action.type) {
     case 'ADD_RESOURCE':
-        state = {
-            ...state,
+        state = [...state, {
             id: action.id,
             text: action.text,
-            completed: false
-            }
+            collapsed: true,
+            projects: []
+            }]
         break;
     case 'TOGGLE_RESOURCE':
-        state = {
-            ...state
-        }
-        break;
+        return state.map(resource =>
+        (resource.id === action.id)
+        ? {...resource, collapsed: !resource.collapsed}
+        : resource
+        )
     default:
         return state
 }

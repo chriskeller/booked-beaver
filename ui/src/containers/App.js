@@ -3,16 +3,20 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {addResource} from '../actions/resourcesActions'
-import VisibleProjectList from '../containers/VisibleProjectList';
-import ResourceList from '../components/ResourceList';
+import VisibleProjectsList from './VisibleProjectsList';
+import VisibleProjectsUse from './VisibleProjectsUse';
+import VisibleResourcesList from './VisibleResourcesList';
+import VisibleResourcesUse from './VisibleResourcesUse';
 import AddProject from './AddProject';
+import AddResource from './AddResource'
+import Header from '../components/Header'
 
 class App extends Component {
   constructor(props) {
     super(props)
     //this.handleChange = this.handleChange.bind(this)
     //this.handleRefreshClick = this.handleRefreshClick.bind(this)
-    this.fn = this.fn.bind(this)
+    //this.fn = this.fn.bind(this)
   }
 /*
   componentDidMount() {
@@ -40,64 +44,66 @@ class App extends Component {
     dispatch(fetchResourcesIfNeeded(selectedProject))
   }
   */
-  fn() {
-    return 1;
-  }
-
-  projects = [{
-    id: 1,
-    completed: true,
-    text: 'Project 1'
-  },{
-    id: 2, 
-    completed: false,
-    text: 'Project 2'
-  },{
-    id: 3, 
-    completed: false,
-    text: 'Project 3'
-  },{
-    id: 4, 
-    completed: false,
-    text: 'Project 4'
-  }]
-
-  resources = [{
-    id: 1,
-    completed: true,
-    text: 'Resource 1'
-  },{
-    id: 2, 
-    completed: false,
-    text: 'Resource 2'
-  },{
-    id: 3, 
-    completed: false,
-    text: 'Resource 3'
-  },{
-    id: 4, 
-    completed: false,
-    text: 'Resource 4'
-  }]
 
   render() {
     return (
-      <div>
-      <div>
-        <h2>Resources:</h2>
-        <ResourceList
-        resources={this.resources}
-        onResourceClick={this.fn}
-        />
-      </div>
-        <div>
-          <h2>Projects:</h2>
-          <AddProject />
-          <VisibleProjectList
-          projects={this.projects}
-          onProjectClick={this.fn}
-          />
+      <div className='container'>
+        <div className='row'>
+          <div className='col'><Header /></div>
         </div>
+
+        { /* resource row */ }
+        <div className='row'>
+
+          {/* left column */ }
+          <div className='col-sm-4'> 
+            <div className='row'>
+              <div className='col-sm-1'></div>
+              <div className='col'><VisibleResourcesList /></div>
+            </div>
+            <div className='row'>
+              <div className='col-sm-1'></div>
+              <div className='col'><AddResource /></div>
+            </div>
+            <div className='row'>
+              <div className='col-sm-1'></div>
+              <div className='col'> <br/></div>
+            </div>
+          </div>
+          {/* right column */}
+          <div className='col-sm-8'>          
+            <div className='row'>
+              <div className='col'><VisibleResourcesUse /></div>
+            </div>
+          </div>
+        
+        </div> { /* end resource row */ }
+
+        { /* projects row */ }
+        <div className='row'>
+          
+          {/* left column */ }
+          <div className='col-sm-4'> 
+            <div className='row'>
+              <div className='col-sm-1'></div>
+              <div className='col'><VisibleProjectsList /></div>
+            </div>
+            <div className='row'>
+              <div className='col-sm-1'></div>
+              <div className='col'><AddProject /></div>
+            </div>    
+          </div>
+          
+          {/* right column */}
+          <div className='col-sm-8'> 
+            <div className='row'>
+              <div className='col'><VisibleProjectsUse /></div>
+            </div>
+          </div>
+        </div> { /* end projects row */ }
+        
+
+        
       </div>
     )
   }
