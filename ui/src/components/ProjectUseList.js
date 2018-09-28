@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProjectUse from './ProjectUse'
 
-const ProjectUseList = ({ projects, toggleProject }) => (
+const ProjectUseList = ({ projects, toggleProject, updateUtilization }) => (
   <table className='table table-sm table-bordered table-hover'>
     <thead className='thead-light'>
       <tr>
@@ -22,7 +22,7 @@ const ProjectUseList = ({ projects, toggleProject }) => (
     </thead>
     <tbody>
       {projects.map((project, index) => (
-        <ProjectUse key={index} {...project} onClick={() => toggleProject(index)} />
+        <ProjectUse key={index} {...project} onClick={() => toggleProject(index)} updateUtilization={updateUtilization} />
       ))}
     </tbody>
   </table>

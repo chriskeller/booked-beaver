@@ -13,8 +13,9 @@ export const addResourceToProject = (projectId, resourceId) => ({
     resource: resourceId 
 })
 
-export const changeUtilization = id => ({
+export const changeUtilization = (id, percentage) => ({
     type: 'CHANGE_PERCENTAGE',
-    id
+    id,
+    percentage
   })
   

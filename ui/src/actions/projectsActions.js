@@ -11,4 +11,5 @@ export const addProject = text => ({
     type: 'TOGGLE_PROJECT',
     id
   })
+
   

@@ -17,15 +17,17 @@ let AddResourceToProject = ({ dispatch, projectId }) => {
           input.value = ''
         }}
       >
-        <input
-            type='number'
-          ref={node => {
-            input = node
-          }}
-        />
-        <button type="submit">
-          add Resource
-        </button>
+
+        <div className='form-row'>
+          <div className='col'>
+            <input type='number' ref={node => input = node} className='form-control form-control-sm' placeholder='Resource id'/>
+          </div>
+          <div className='col'>
+            <button type="submit" className='btn btn-outline-primary btn-sm'>
+              add
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   )

@@ -11,7 +11,7 @@ const Project = ({ id, onClick, collapsed, text, resources }) => (
   </tr>
   {resources.map((resource, index) => {
           return (
-            <tr key={index} style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
+            <tr key={index} className='table-primary' style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
               <th scope='row'> </th>
               <td>{resource.id}</td>
               <td>{resource.text}</td>

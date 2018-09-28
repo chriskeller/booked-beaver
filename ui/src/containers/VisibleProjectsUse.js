@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { toggleProject } from '../actions/projectsActions'
+import { changeUtilization } from '../actions/utilizationsActions'
 import ProjectUseList from '../components/ProjectUseList'
 import { getVisibleProjects } from './VisibleProjectsList'
 
@@ -13,7 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleProject: id => dispatch(toggleProject(id))
+    toggleProject: id => dispatch(toggleProject(id)),
+    updateUtilization: id => dispatch(changeUtilization(id))
     }
   }
 

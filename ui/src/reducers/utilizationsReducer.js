@@ -2,11 +2,8 @@
 // utilizations is an array of utilization objects
 // utilization:
 // - id
-// - project
-//   - collapsed
-//   - text
-// - resource
-//   - text
+// - project        (refers to the project id)
+// - resource       (refers to the resource id)
 // - percentage
 // - period
 
