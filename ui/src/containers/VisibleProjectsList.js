@@ -43,7 +43,7 @@ export const getVisibleProjects = (projects, utilizations, filter) => {
         resources.push( resource )
       }
       else {
-        // else if the project is already in the array, add utilization
+        // else if the resource is already in the array, add utilization
         var i = resources.find( resource => resource.id === utilization.resource )
         i.utilizations.push( { 
           id: utilization.id,

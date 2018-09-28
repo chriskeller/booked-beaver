@@ -44,18 +44,27 @@ export const getVisibleResources = (resources, utilizations, filter) => {
     if( utilization.resource === resource.id ){
       
       // if the project has not yet been added to the array
-      if( !projects.includes( utilization.project )){
+      if( !projects.some( project => project.id === utilization.project )){
         var project = {
           id: utilization.project,
           text: 'todo',
           utilizations: [{
-            period: 'period',
-            percentage: 0.1
+            id: utilization.id,
+            period: utilization.period,
+            percentage: utilization.percentage
           }]
         }
         projects.push( project )
       }
       else {
+        // else if the project is already in the array, add utilization
+        var i = projects.find( project => project.id === utilization.project )
+        i.utilizations.push( { 
+          id: utilization.id,
+          period: utilization.period,
+          percentage: utilization.percentage
+        })
+
         // else if the project is already in the array, add utilization
         project.utilizations.push( { period: 'period', percentage: 0.2 })
       }
