@@ -64,9 +64,6 @@ export const getVisibleResources = (resources, utilizations, filter) => {
           period: utilization.period,
           percentage: utilization.percentage
         })
-
-        // else if the project is already in the array, add utilization
-        project.utilizations.push( { period: 'period', percentage: 0.2 })
       }
     }
   })
