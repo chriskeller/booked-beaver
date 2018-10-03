@@ -2,27 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProjectUseCell from './ProjectUseCell'
 
-const ProjectUse = ({ id, onClick, collapsed, text, resources, updateUtilization }) => (
+const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtilization }) => (
   <React.Fragment>
   <tr onClick={onClick} className='table-light'>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
+  
+    {weeks.map((week, index) => (
+          <td key={index}>-</td>
+        ))}
   </tr>
 
   {/* Iterate over all resources assigned to this project */}
   {resources.map((resource, index) => {
     return (
-      
         <tr key={index} className='table-primary' style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
 
         {/* Iterate over all utilizations*/}
@@ -33,11 +24,6 @@ const ProjectUse = ({ id, onClick, collapsed, text, resources, updateUtilization
         })}
           
         </tr>
-      
-
-
-        
-        
     )
   })}
   <tr style={ { visibility: collapsed ? 'collapse' : 'visible'}}>

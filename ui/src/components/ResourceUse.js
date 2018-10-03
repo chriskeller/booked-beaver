@@ -1,48 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ResourceUseCell from './ResourceUseCell'
 
-const ResourceUse = ({ id, onClick, collapsed, text, projects }) => (
+const ResourceUse = ({ id, onClick, collapsed, text, projects, weeks }) => (
   <React.Fragment>
   <tr onClick={onClick} className='table-primary'>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
+      {weeks.map((week, index) => (
+          <td key={index}>-</td>
+        ))}
   </tr>
+
+  {/* Iterate over all projects assigned to this resource */}
   {projects.map((project, index) => {
     return (
       <tr key={index} style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
+        
+        {/* Iterate over all utilizations*/}
+        {project.utilizations.map((utilization, index) => {
+          return (
+            <ResourceUseCell key={index} {...utilization}  />
+          )
+        })}
 
-
-        {/* { 
-            project.utilizations.map((utilization, index) => { 
-                return (
-                    <td key={index}>
-                    {utilization.percentage}
-                    </td>
-                )
-            })
-        } */}
         
       </tr>
     )

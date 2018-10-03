@@ -11,9 +11,9 @@ const Resource = ({ id, onClick, collapsed, text, projects }) => (
   {projects.map((project, index) => {
     return (
       <tr key={index} style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
-        <th scope='row'> </th>
-        <td>{project.id}</td>
+        <th scope='row'> {project.id}</th>
         <td>{project.text}</td>
+        <td></td>
       </tr>
     )
   })} 

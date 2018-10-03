@@ -12,9 +12,9 @@ const Project = ({ id, onClick, collapsed, text, resources }) => (
   {resources.map((resource, index) => {
           return (
             <tr key={index} className='table-primary' style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
-              <th scope='row'> </th>
-              <td>{resource.id}</td>
+              <th scope='row'>{resource.id}</th>
               <td>{resource.text}</td>
+              <td></td>
             </tr>
           )
         })} 

@@ -1,4 +1,18 @@
 
+/**
+ * Reducer for the resources state.
+ *
+ * resources[] is an array of resource objects:
+ * - resource
+ *   - id
+ *   - text
+ *   - collapsed
+ *   - projects[]
+ * 
+ * @param {Object[]} [state=[]] - The resources state (array of resource objects)
+ * @param {Object} action = The action from resourcesActions.js
+ * @returns state
+ */
 const resourcesReducer = ( state = [], action) => {
 switch (action.type) {
     case 'ADD_RESOURCE':

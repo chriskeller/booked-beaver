@@ -7,7 +7,8 @@ import { getVisibleResources } from './VisibleResourcesList'
 
 const mapStateToProps = state => {
   return {
-    resources: getVisibleResources(state.resources, state.utilizations, state.visibilityFilter)
+    resources: getVisibleResources(state),
+    weeks: state.weeks
   }
 }
 

@@ -1,12 +1,19 @@
 
-// utilizations is an array of utilization objects
-// utilization:
-// - id
-// - project        (refers to the project id)
-// - resource       (refers to the resource id)
-// - percentage
-// - period
-
+/**
+ * Reducer for the utilizations state.
+ * 
+ * utilizations[] is an array of utilization objects:
+ * - utilization
+ *   - id
+ *   - project          (refers to the project id)
+ *   - resource         (refers to the resource id)
+ *   - percentage
+ *   - period
+ *
+ * @param {Object[]} [state=[]] - The utilizations state (array of utilization objects).
+ * @param {Object} action - The action from utilizationsActions.js.
+ * @returns state
+ */
 const utilizationReducer = ( state = [], action) => {
     switch (action.type) {
         case 'ADD_UTILIZATION':

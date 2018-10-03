@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import {addResource} from '../actions/resourcesActions'
 import VisibleProjectsList from './VisibleProjectsList';
 import VisibleProjectsUse from './VisibleProjectsUse';
 import VisibleResourcesList from './VisibleResourcesList';
@@ -10,14 +9,26 @@ import VisibleResourcesUse from './VisibleResourcesUse';
 import AddProject from './AddProject';
 import AddResource from './AddResource'
 import Header from '../components/Header'
+import VisibleWeekFilter from './VisibleWeekFilter';
+import {weekFilter} from '../actions/weeksActions';
+import {getWeeksFilter} from './VisibleWeekFilter';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.setDefaultWeekFilter = this.setDefaultWeekFilter.bind(this);
+
+    this.setDefaultWeekFilter();
     //this.handleChange = this.handleChange.bind(this)
     //this.handleRefreshClick = this.handleRefreshClick.bind(this)
     //this.fn = this.fn.bind(this)
   }
+
+  setDefaultWeekFilter() {
+    const { weekFilter, filter } = this.props
+    weekFilter(filter)
+  }
+
 /*
   componentDidMount() {
     const { dispatch, selectedProject } = this.props
@@ -48,8 +59,9 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <div className='row'>
-          <div className='col'><Header /></div>
+        <div className='row align-items-center'>
+          <div className='col-md-10'><Header /></div>
+          <div className='col-md-2'><VisibleWeekFilter /></div>
         </div>
 
         { /* resource row */ }
@@ -102,7 +114,6 @@ class App extends Component {
           </div>
         </div> { /* end projects row */ }
         
-
         
       </div>
     )
@@ -119,6 +130,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
     return {
+    filter: getWeeksFilter(),
     selectedProject: 0,
     resources: [],
     isFetching: false,
@@ -128,9 +140,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addResource: (resource) => {
-      dispatch(addResource(resource))
-    }
+    weekFilter: filter => dispatch(weekFilter(filter))
   }
 }
 

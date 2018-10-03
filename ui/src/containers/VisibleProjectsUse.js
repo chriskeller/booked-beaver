@@ -8,7 +8,8 @@ import { getVisibleProjects } from './VisibleProjectsList'
 
 const mapStateToProps = state => {
   return {
-    projects: getVisibleProjects(state.projects, state.utilizations, state.visibilityFilter)
+    projects: getVisibleProjects(state),
+    weeks: state.weeks
   }
 }
 
