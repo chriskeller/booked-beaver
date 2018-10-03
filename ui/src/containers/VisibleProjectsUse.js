@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleProject: id => dispatch(toggleProject(id)),
-    updateUtilization: id => dispatch(changeUtilization(id))
+    updateUtilization: (week, project, resource, percentage) => dispatch(changeUtilization(week, project, resource, percentage))
     }
   }
 

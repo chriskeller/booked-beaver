@@ -33,11 +33,26 @@ const utilizationReducer = ( state = [], action) => {
                 }]
             break;
         case 'CHANGE_PERCENTAGE':
-            return state.map(utilization =>
-            (utilization.id === action.id)
-              ? {...utilization, percentage: action.percentage}
-              : utilization
-            )
+        console.log( "project: ", action.project );
+        console.log( "resource: ", action.resource );
+            let i = state.find( s => 
+                s.period === action.week && 
+                s.project === action.project &&
+                s.resource === action.resource
+                );
+            if( typeof i === 'undefined'){
+                // does not exist yet -> create
+                state = [...state, {
+                    project: action.project, 
+                    resource: action.resource, 
+                    percentage: action.percentage,
+                    period: action.week
+                }]
+            } else {
+                // exists, update percentage
+                i.percentage = action.percentage;
+            }
+            break;
         default:
             return state
     }

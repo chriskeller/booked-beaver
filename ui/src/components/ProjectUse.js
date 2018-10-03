@@ -19,7 +19,7 @@ const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtil
         {/* Iterate over all utilizations*/}
         {resource.utilizations.map((utilization, index) => {
           return (
-            <ProjectUseCell key={index} {...utilization} onInput={() => updateUtilization(resource.id)} />
+            <ProjectUseCell key={index} {...utilization} project={id} resource={resource.id} week={utilization.period} updateUtilization={updateUtilization} />
           )
         })}
           
