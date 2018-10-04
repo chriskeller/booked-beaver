@@ -61,7 +61,9 @@ const attachResources = (state, project) => {
                 // find utilization
                 var j = i.utilizations.find(u => u.period === utilization.period);
 
-                j.percentage = utilization.percentage;
+                if( typeof j !== 'undefined'){
+                  j.percentage = utilization.percentage;
+                }
 
             }
         }

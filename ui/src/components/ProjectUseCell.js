@@ -1,26 +1,53 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ProjectUseCell = ({updateUtilization, week, project, resource, percentage, id}) => {
-  let input;
-  
-  return (
-    <td className='px-0 py-0'>
-      {/* <div id="A1" contentEditable suppressContentEditableWarning={true}>
-        0
-      </div> */}
+class ProjectUseCell extends React.Component {
 
-        <input 
-          ref={node => input = node}
-          className='form-control form-control-sm' 
-          type='number' min='0' max='1' step='0.1' 
-          placeholder='0'
-          id={id}
-          onInput={() => updateUtilization(week, project, resource, input.value)}
-          value={percentage}  
-        />
-    </td>
-  )
+    //= ({updateUtilization, week, project, resource, percentage, id}) => {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            value: typeof this.props.percentage === 'undefined' ? 0 : this.props.percentage, 
+            id: '' 
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        if( this.props.week !== prevProps.week ) {
+            this.setState({ value: typeof this.props.percentage === 'undefined' ? 0 : this.props.percentage });
+        }
+    }
+
+    handleChange(event) {
+        this.setState({ value: event.target.value });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.updateUtilization(this.props.week, this.props.project, this.props.resource, event.target.value);
+    }
+
+    render() {
+        return (
+            <td className='px-0 py-0'>
+
+                <input 
+                    className='form-control form-control-sm' 
+                    type='number' min='0' max='1' step='0.1' 
+                    
+                    id={this.props.week}
+
+                    value={this.state.value}
+
+                    onChange={this.handleChange}
+                    onBlur={this.handleSubmit}
+                />
+            </td>
+        )
+    }
 }
 
 ProjectUseCell.propTypes = {

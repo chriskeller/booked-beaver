@@ -2,22 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ResourceUse from './ResourceUse'
 
-const ResourceUseList = ({ resources, weeks, toggleResource }) => (
-  <table className='table table-sm table-bordered table-hover'>
-    <thead className='thead-light'>
-      <tr>
-        {weeks.map((week, index) => (
-          <th scope='col' key={index}>{week}</th>
+const ResourceUseList = ({ resources, weeks, toggleResource }) => {
+  let thStyle = {
+    width: '60px',
+    minWidth: '60px'
+  } 
+
+  return (
+    <table className='table table-sm table-bordered table-hover'>
+      <thead className='thead-light'>
+        <tr>
+          {weeks.map((week, index) => (
+            <th style={thStyle} scope='col' key={index}>{week}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {resources.map((resource, index) => (
+          <ResourceUse key={index} {...resource} weeks={weeks} onClick={() => toggleResource(index)} />
         ))}
-      </tr>
-    </thead>
-    <tbody>
-      {resources.map((resource, index) => (
-        <ResourceUse key={index} {...resource} weeks={weeks} onClick={() => toggleResource(index)} />
-      ))}
-    </tbody>
-  </table>
-)
+      </tbody>
+    </table>
+  )
+}
 
 ResourceUseList.propTypes = {
   resources: PropTypes.arrayOf(

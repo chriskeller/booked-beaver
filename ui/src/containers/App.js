@@ -58,32 +58,29 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container-fluid'>
         <div className='row align-items-center'>
-          <div className='col-md-10'><Header /></div>
-          <div className='col-md-2'><VisibleWeekFilter /></div>
+          <div className='col-xl-10'><Header /></div>
+          <div className='col-xl-2'><VisibleWeekFilter /></div>
         </div>
 
         { /* resource row */ }
         <div className='row'>
 
           {/* left column */ }
-          <div className='col-sm-4'> 
+          <div className='col-3'> 
             <div className='row'>
-              <div className='col-sm-1'></div>
               <div className='col'><VisibleResourcesList /></div>
             </div>
             <div className='row'>
-              <div className='col-sm-1'></div>
               <div className='col'><AddResource /></div>
             </div>
             <div className='row'>
-              <div className='col-sm-1'></div>
               <div className='col'> <br/></div>
             </div>
           </div>
           {/* right column */}
-          <div className='col-sm-8'>          
+          <div className='col-9'>          
             <div className='row'>
               <div className='col'><VisibleResourcesUse /></div>
             </div>
@@ -95,19 +92,17 @@ class App extends Component {
         <div className='row'>
           
           {/* left column */ }
-          <div className='col-sm-4'> 
+          <div className='col-sm-3'> 
             <div className='row'>
-              <div className='col-sm-1'></div>
               <div className='col'><VisibleProjectsList /></div>
             </div>
             <div className='row'>
-              <div className='col-sm-1'></div>
               <div className='col'><AddProject /></div>
             </div>    
           </div>
           
           {/* right column */}
-          <div className='col-sm-8'> 
+          <div className='col-sm-9'> 
             <div className='row'>
               <div className='col'><VisibleProjectsUse /></div>
             </div>

@@ -74,8 +74,10 @@ export const getVisibleResources = (state) => {
         var i = projects.find(project => project.id === utilization.project);
         // find utilization
         var j = i.utilizations.find(u => u.period === utilization.period);
-
-        j.percentage = utilization.percentage;
+        
+        if( typeof j !== 'undefined'){
+          j.percentage = utilization.percentage;
+        }
       }
     }
   })
