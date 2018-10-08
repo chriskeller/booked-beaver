@@ -7,6 +7,7 @@ const Joi = require('joi');
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
+const mongojs = require('mongojs')
 
 const hapiOptions = {
     host: 'localhost',

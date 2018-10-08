@@ -7,17 +7,26 @@ const Joi = require('joi');
 exports.plugin = {
     name: 'resources',
     version: '1.0.0',
+    
     register: async function (server, options) {
 
         const storage = server.app.storage;
 
+        /* GET /resources */
         server.route({
             method: 'GET',
             path: '/resources',
             options: {
               tags: ['api'],
               description: 'GET: read resources',
-              notes: 'My route notes'
+              notes: 'My route notes',
+              cors: {
+                  origin: ['*'],
+                  headers: ['Accept', 'Authorization', 'Content-Type', 'If-None-Match', 'Origin'],
+                  additionalHeaders: ['application/json'],
+                  exposedHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+                  credentials: true
+              }
             },
             handler: async function (request, h) {
 

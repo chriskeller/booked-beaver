@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { toggleResource } from '../actions/resourcesActions'
 import ResourceUseList from '../components/ResourceUseList'
-import { getVisibleResources } from './VisibleResourcesList'
+import { getVisibleResources } from './ResourcesListContainer'
 
 
 

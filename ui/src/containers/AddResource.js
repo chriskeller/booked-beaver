@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addResource } from '../actions/resourcesActions'
+import { createResource, createResourceSuccess, createResourceFailure } from '../actions/resourcesActions'
 
 let AddResource = ({ dispatch }) => {
   let input
@@ -12,7 +12,9 @@ let AddResource = ({ dispatch }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(addResource(input.value))
+          dispatch(createResource(input.value)).then((response) => {
+            !response.error ? dispatch(createResourceSuccess(response.payload.data)) : dispatch(createResourceFailure(response.payload.data))
+          })
           input.value = ''
         }}
       >

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import VisibleProjectsList from './VisibleProjectsList';
 import VisibleProjectsUse from './VisibleProjectsUse';
-import VisibleResourcesList from './VisibleResourcesList';
+import ResourcesListContainer from './ResourcesListContainer';
 import VisibleResourcesUse from './VisibleResourcesUse';
 import AddProject from './AddProject';
 import AddResource from './AddResource'
@@ -70,7 +70,7 @@ class App extends Component {
           {/* left column */ }
           <div className='col-3'> 
             <div className='row'>
-              <div className='col'><VisibleResourcesList /></div>
+              <div className='col'><ResourcesListContainer /></div>
             </div>
             <div className='row'>
               <div className='col'><AddResource /></div>

@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import logger from "redux-logger"
+import promise from "redux-promise";
 
 import projects from "./reducers/projectsReducer"
-import resources from "./reducers/resourcesReducer"
+import resourcesState from "./reducers/resourcesReducer"
 import utilizations from "./reducers/utilizationsReducer"
 import weeks from "./reducers/weeksReducer"
 
@@ -11,10 +12,10 @@ import weeks from "./reducers/weeksReducer"
 export default createStore(
   combineReducers({
     projects,
-    resources,
+    resourcesState,
     utilizations, 
     weeks
   }),
   {},
-  applyMiddleware(logger, thunk)
+  applyMiddleware(logger, thunk, promise)
 )
