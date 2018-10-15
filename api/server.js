@@ -7,7 +7,6 @@ const Joi = require('joi');
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
-const mongojs = require('mongojs')
 
 const hapiOptions = {
     host: 'localhost',
@@ -31,26 +30,9 @@ const hapiOptions = {
 
 const server = Hapi.server(hapiOptions);
 
-server.app.storage = storage;
-
 const init = async () => {
     
-    //initiate the persistent storage
-    await storage.init({
-        dir: './data',
-        stringify: JSON.stringify,
-        parse: JSON.parse,
-        encoding: 'utf8',
-        logging: false,
-        ttl: false,
-        expiredInterval: 2*60*1000, // in milliseconds; every 2 minutes the process will clean-up the expired cache
-        forgiveParseErrors: false
-    }, function (err, content) {
-        if (err) {
-            return console.error(err)
-        }
-        console.log(content)
-    });
+  
     
     /*
     let fibonacci = await storage.getItem('fibonacci');

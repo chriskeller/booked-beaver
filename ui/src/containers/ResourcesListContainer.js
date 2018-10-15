@@ -96,7 +96,8 @@ const mapDispatchToProps = dispatch => {
             console.log("TEST")
             dispatch(fetchResources())
                 .then((response) => {
-                    !response.error ? dispatch(fetchResourcesSuccess(response.payload.data)) : dispatch(fetchResourcesFailure(response.payload.data))
+                   !response.error ? dispatch(fetchResourcesSuccess(response.payload.data)) : dispatch(fetchResourcesFailure(response.payload.data))
+                   //dispatch(fetchResourcesSuccess([]))
                 })
                 .catch((response) => {
                     dispatch(fetchResourcesFailure(response));

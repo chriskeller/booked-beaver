@@ -1,8 +1,11 @@
 'use strict';
 
+const knex = require('knex')(require('../knexfile'));
+
 const Boom = require('boom');
 const uuid = require('node-uuid');
 const Joi = require('joi');
+
 
 exports.plugin = {
     name: 'resources',
@@ -30,13 +33,39 @@ exports.plugin = {
             },
             handler: async function (request, h) {
 
-                let resources = await storage.getItem('resources');
-                
-                if(! resources ){
-                    return Boom.notFound();
+                try {
+                    const result = knex( 'resource').select('name');
+                    return result;
+                }
+                catch (err) {
+                    return {status: false };
                 }
 
-                return resources;
+                // const getOperation = knex( 'resource').select('name').then( (results ) => {
+                //     if( !results || results.length === 0 ) {
+
+                //         reply( {
+            
+                //             error: true,
+                //             errMessage: 'No resource found'
+            
+                //         } );
+            
+                //     }
+            
+                //     reply( {
+            
+                //         dataCount: results.length,
+                //         data: results
+            
+                //     } );
+                // }).catch( ( err ) => {
+
+                //     reply( 'server-side error' );
+            
+                // } );
+
+                // return reply;
                 
             }
         });
@@ -51,15 +80,22 @@ exports.plugin = {
                 payload: {
                   allow: [ 'application/json' ]
                 },
+                cors: {
+                    origin: ['*'],
+                    headers: ['Accept', 'Authorization', 'Content-Type', 'If-None-Match', 'Origin'],
+                    additionalHeaders: ['application/json'],
+                    exposedHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+                    credentials: true
+                },
                 validate: {
                     payload: {
-                        name: Joi.string().min(1).max(50).required(),
-                        array: Joi.array().items(
-                            Joi.array().items(
-                                Joi.string().required(), 
-                                Joi.number().integer().required()
-                            )
-                        )
+                         name: Joi.string().min(1).max(50).required()
+                        // array: Joi.array().items(
+                        //     Joi.array().items(
+                        //         Joi.string().required(), 
+                        //         Joi.number().integer().required()
+                        //     )
+                        // )
                     }
                 }
             },

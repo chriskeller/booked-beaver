@@ -54,13 +54,13 @@ export const fetchResourcesFailure = error => {
 }
 
 /** Create new resource */
-export const createResource = (props, tokenFromStorage) => {
+export const createResource = (props) => {
     const request = axios({
         method: 'post',
-        data: props,
+        data: JSON.stringify({name: props}),
         url: ROOT_URL + '/resources',
         headers: {
-            'Authorization': 'Bearer ' + tokenFromStorage
+            'Content-Type': 'application/json'
         }
     });
 
