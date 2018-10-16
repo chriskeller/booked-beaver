@@ -79,11 +79,8 @@ const resourcesReducer = (state = INITIAL_STATE, action) => {
             }]
             break;
         case 'TOGGLE_RESOURCE':
-            return state.map(resource =>
-                (resource.id === action.id) ?
-                { ...resource, collapsed: !resource.collapsed } :
-                resource
-            )
+            return { ...state, resourcesList: { resources: [...state.resourcesList.resources.map( resource => (resource.id === action.id) ? {...resource, collapsed: !resource.collapsed} : resource )], error: null, loading: false}};
+        
         default:
             return state
     }

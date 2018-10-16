@@ -31,8 +31,8 @@ const ResourceUse = ({ id, onClick, collapsed, text, projects, weeks }) => (
 
 ResourceUse.propTypes = {
   onClick: PropTypes.func.isRequired,
-  collapsed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  collapsed: PropTypes.bool,
+  name: PropTypes.string.isRequired
 }
 
 export default ResourceUse

@@ -32,14 +32,17 @@ exports.plugin = {
             },
             handler: async function (request, h) {
 
-                try {
-                    const result = knex('resource').select('resourceId', 'name', 'active');
-                    return result;
-                } catch (err) {
-                    return {
-                        status: false
-                    };
-                }
+
+                const selectOp = await knex('resource').select({
+                        id: 'resourceId'
+                    }, 'name', 'active')
+                    .catch((err) => {
+                        console.error(err);
+                        throw Boom.badData(err.message); // throw a boom baddata error
+                    })
+
+                return selectOp;
+
 
             }
         });

@@ -30,8 +30,8 @@ ResourceUseList.propTypes = {
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      collapsed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
+      collapsed: PropTypes.bool,
+      name: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
   onResourceClick: PropTypes.func

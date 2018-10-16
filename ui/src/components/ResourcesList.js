@@ -14,7 +14,7 @@ class ResourcesList extends React.Component {
                 <Resource 
                     key={index} 
                     {...resource} 
-                    onClick={() => this.props.toggleResource(index)} 
+                    onClick={() => this.props.toggleResource(resource.id)} 
                     />
             );
         }
@@ -53,7 +53,7 @@ ResourcesList.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
-            collapsed: PropTypes.bool.isRequired,
+            collapsed: PropTypes.bool,
             projects: PropTypes.array
         }).isRequired
     ).isRequired,
