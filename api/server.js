@@ -1,8 +1,6 @@
 'use strict';
 
 const Hapi = require('hapi');
-const storage = require('node-persist');
-const Pack = require('./package');
 const Joi = require('joi');
 const Inert = require('inert');
 const Vision = require('vision');
@@ -31,24 +29,6 @@ const hapiOptions = {
 const server = Hapi.server(hapiOptions);
 
 const init = async () => {
-    
-  
-    
-    /*
-    let fibonacci = await storage.getItem('fibonacci');
-
-    if(! fibonacci) {
-        await storage.setItem('fibonacci', [0,1,1,2,3,5,8])
-            .then(() => {
-                console.log('Stored successfully');
-            })
-            .catch(err => console.error(err));
-        
-    }
-
-    fibonacci = await storage.getItem('fibonacci');
-    console.log('Fibonacci is ' + fibonacci); 
-    */
 
     // Register plugins for Hapi server
     await server.register([

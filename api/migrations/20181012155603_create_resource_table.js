@@ -12,8 +12,6 @@ exports.up = function (knex, Promise) {
             userTable.string('email', 255).notNullable().unique();
             userTable.string('password', 255).notNullable();
 
-            userTable.timestamp('created_at').notNullable();
-
         })
 
         .createTable('resource', function (resourceTable) {
@@ -24,8 +22,6 @@ exports.up = function (knex, Promise) {
             // Data
             resourceTable.string('name', 255).notNullable();
             resourceTable.boolean('active').notNullable().defaultTo(true);
-
-            resourceTable.timestamp('created_at').notNullable();
 
         })
 
@@ -38,7 +34,6 @@ exports.up = function (knex, Promise) {
             projectTable.string('name', 255).notNullable();
             projectTable.boolean('active').notNullable().defaultTo(true);
 
-            projectTable.timestamp('created_at').notNullable();
 
         })
 
@@ -47,12 +42,13 @@ exports.up = function (knex, Promise) {
             // Primary Key
             usageTable.increments('usageId').primary();
 
-            // Foreign keys
-            usageTable.string('resourceId', 255).references('resourceId').inTable('resource').notNullable();
-            usageTable.string('projectId', 255).references('projectId').inTable('project').notNullable();
+            // Foreign keys (primary keys are created as int(10))
+            usageTable.integer('resourceId').unsigned();
+            usageTable.integer('projectId').unsigned();
+            usageTable.foreign('resourceId').references('resourceId').inTable('resource');
+            usageTable.foreign('projectId').references('projectId').inTable('project');
             usageTable.json('timeframe').notNullable();
 
-            usageTable.timestamp('created_at').notNullable();
 
         });
 };
