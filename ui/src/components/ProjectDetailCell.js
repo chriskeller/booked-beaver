@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class ProjectUseCell extends React.Component {
+class ProjectDetailCell extends React.Component {
 
     //= ({updateUtilization, week, project, resource, percentage, id}) => {
     constructor(props) {
@@ -50,10 +50,10 @@ class ProjectUseCell extends React.Component {
     }
 }
 
-ProjectUseCell.propTypes = {
+ProjectDetailCell.propTypes = {
     onClick: PropTypes.func,
     collapsed: PropTypes.bool,
     text: PropTypes.string
 }
 
-export default ProjectUseCell
+export default ProjectDetailCell

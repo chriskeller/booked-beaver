@@ -41,7 +41,7 @@ const attachResources = (state, project) => {
                 // create a new resource
                 var resource = {
                     id: utilization.resource,
-                    text: state.resources.find(r => r.id === utilization.resource).text,
+                    name: state.resourcesState.resourcesList.resources.find(r => r.id === utilization.resource).name,
                     utilizations: []
                 };
                 // add a utilization for each week

@@ -41,7 +41,7 @@ const attachProjects = (state, resource) => {
                 // create a new project
                 var project = {
                     id: utilization.project,
-                    text: state.projects.find(p => p.id === utilization.project).text,
+                    name: state.projectsState.projectsList.projects.find(p => p.id === utilization.project).name,
                     utilizations: []
                 }
                 // add a utilization for each week

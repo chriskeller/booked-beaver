@@ -12,7 +12,7 @@ const Resource = ({ id, onClick, collapsed, name, projects }) => (
     return (
       <tr key={index} style={ { visibility: collapsed ? 'collapse' : 'visible'}}>
         <th scope='row'> {project.id}</th>
-        <td>{project.text}</td>
+        <td>{project.name}</td>
         <td></td>
       </tr>
     )

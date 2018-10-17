@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { toggleResource } from '../actions/resourcesActions'
-import ResourceUseList from '../components/ResourceUseList'
+import ResourcesDetailsList from '../components/ResourcesDetailsList'
 import { getVisibleResources } from './ResourcesListContainer'
 
 
@@ -18,9 +18,9 @@ const mapDispatchToProps = dispatch => {
     }
   }
 
-const VisibleResourcesUse = connect(
+const ResourcesDetailsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ResourceUseList)
+)(ResourcesDetailsList)
 
-export default VisibleResourcesUse
+export default ResourcesDetailsContainer

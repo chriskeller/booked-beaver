@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import ProjectsListContainer from './ProjectsListContainer';
-import VisibleProjectsUse from './VisibleProjectsUse';
+import ProjectsDetailsContainer from './ProjectsDetailsContainer';
 import ResourcesListContainer from './ResourcesListContainer';
-import VisibleResourcesUse from './VisibleResourcesUse';
+import ResourcesDetailsContainer from './ResourcesDetailsContainer';
 import AddProject from './AddProject';
 import AddResource from './AddResource'
 import Header from '../components/Header'
@@ -82,7 +82,7 @@ class App extends Component {
           {/* right column */}
           <div className='col-9'>          
             <div className='row'>
-              <div className='col'><VisibleResourcesUse /></div>
+              <div className='col'><ResourcesDetailsContainer /></div>
             </div>
           </div>
         
@@ -104,7 +104,7 @@ class App extends Component {
           {/* right column */}
           <div className='col-sm-9'> 
             <div className='row'>
-              <div className='col'><VisibleProjectsUse /></div>
+              <div className='col'><ProjectsDetailsContainer /></div>
             </div>
           </div>
         </div> { /* end projects row */ }

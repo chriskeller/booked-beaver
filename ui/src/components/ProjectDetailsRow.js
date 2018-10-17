@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProjectUseCell from './ProjectUseCell'
+import ProjectDetailCell from './ProjectDetailCell'
 
-const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtilization }) => (
+const ProjectDetailsRow = ({ id, onClick, collapsed, text, resources, weeks, updateUtilization }) => (
   <React.Fragment>
   <tr onClick={onClick} className='table-light'>
   
@@ -19,7 +19,7 @@ const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtil
         {/* Iterate over all utilizations*/}
         {resource.utilizations.map((utilization, index) => {
           return (
-            <ProjectUseCell key={index} {...utilization} project={id} resource={resource.id} week={utilization.period} updateUtilization={updateUtilization} />
+            <ProjectDetailCell key={index} {...utilization} project={id} resource={resource.id} week={utilization.period} updateUtilization={updateUtilization} />
           )
         })}
           
@@ -46,10 +46,10 @@ const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtil
   </React.Fragment>
 )
 
-ProjectUse.propTypes = {
+ProjectDetailsRow.propTypes = {
   onClick: PropTypes.func.isRequired,
   collapsed: PropTypes.bool,
   name: PropTypes.string.isRequired
 }
 
-export default ProjectUse
+export default ProjectDetailsRow

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProjectUse from './ProjectUse'
+import ProjectDetailsRow from './ProjectDetailsRow'
 
-const ProjectUseList = ({ projects, weeks, toggleProject, updateUtilization }) => {
+const ProjectDetailsList = ({ projects, weeks, toggleProject, updateUtilization }) => {
   let thStyle = {
     width: '60px',
     minWidth: '60px'
@@ -19,14 +19,14 @@ const ProjectUseList = ({ projects, weeks, toggleProject, updateUtilization }) =
         </thead>
         <tbody>
           {projects.map((project, index) => (
-            <ProjectUse key={index} {...project} weeks={weeks} onClick={() => toggleProject(index)} updateUtilization={updateUtilization} />
+            <ProjectDetailsRow key={index} {...project} weeks={weeks} onClick={() => toggleProject(index)} updateUtilization={updateUtilization} />
           ))}
         </tbody>
       </table>
   )
 }
 
-ProjectUseList.propTypes = {
+ProjectDetailsList.propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -37,4 +37,4 @@ ProjectUseList.propTypes = {
   toggleProject: PropTypes.func
 }
 
-export default ProjectUseList
+export default ProjectDetailsList

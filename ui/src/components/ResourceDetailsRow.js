@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ResourceUseCell from './ResourceUseCell'
+import ResourceDetailCell from './ResourceDetailCell'
 
-const ResourceUse = ({ id, onClick, collapsed, text, projects, weeks }) => (
+const ResourceDetailsRow = ({ id, onClick, collapsed, text, projects, weeks }) => (
   <React.Fragment>
   <tr onClick={onClick} className='table-primary'>
       {weeks.map((week, index) => (
@@ -18,7 +18,7 @@ const ResourceUse = ({ id, onClick, collapsed, text, projects, weeks }) => (
         {/* Iterate over all utilizations*/}
         {project.utilizations.map((utilization, index) => {
           return (
-            <ResourceUseCell key={index} {...utilization}  />
+            <ResourceDetailCell key={index} {...utilization}  />
           )
         })}
 
@@ -29,10 +29,10 @@ const ResourceUse = ({ id, onClick, collapsed, text, projects, weeks }) => (
   </React.Fragment>
 )
 
-ResourceUse.propTypes = {
+ResourceDetailsRow.propTypes = {
   onClick: PropTypes.func.isRequired,
   collapsed: PropTypes.bool,
   name: PropTypes.string.isRequired
 }
 
-export default ResourceUse
+export default ResourceDetailsRow

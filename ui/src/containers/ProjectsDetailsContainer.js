@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { toggleProject } from '../actions/projectsActions'
 import { changeUtilization } from '../actions/utilizationsActions'
-import ProjectUseList from '../components/ProjectUseList'
+import ProjectsDetailsList from '../components/ProjectsDetailsList'
 import { getVisibleProjects } from './ProjectsListContainer'
 
 
@@ -20,9 +20,9 @@ const mapDispatchToProps = dispatch => {
     }
   }
 
-const VisibleProjectsUse = connect(
+const ProjectsDetailsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProjectUseList)
+)(ProjectsDetailsList)
 
-export default VisibleProjectsUse
+export default ProjectsDetailsContainer

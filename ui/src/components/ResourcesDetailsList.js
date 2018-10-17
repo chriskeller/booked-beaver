@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ResourceUse from './ResourceUse'
+import ResourceDetailsRow from './ResourceDetailsRow'
 
-const ResourceUseList = ({ resources, weeks, toggleResource }) => {
+const ResourcesDetailsList = ({ resources, weeks, toggleResource }) => {
   let thStyle = {
     width: '60px',
     minWidth: '60px'
@@ -19,14 +19,14 @@ const ResourceUseList = ({ resources, weeks, toggleResource }) => {
       </thead>
       <tbody>
         {resources.map((resource, index) => (
-          <ResourceUse key={index} {...resource} weeks={weeks} onClick={() => toggleResource(index)} />
+          <ResourceDetailsRow key={index} {...resource} weeks={weeks} onClick={() => toggleResource(index)} />
         ))}
       </tbody>
     </table>
   )
 }
 
-ResourceUseList.propTypes = {
+ResourcesDetailsList.propTypes = {
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -37,4 +37,4 @@ ResourceUseList.propTypes = {
   onResourceClick: PropTypes.func
 }
 
-export default ResourceUseList
+export default ResourcesDetailsList
