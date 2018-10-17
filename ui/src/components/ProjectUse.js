@@ -48,8 +48,8 @@ const ProjectUse = ({ id, onClick, collapsed, text, resources, weeks, updateUtil
 
 ProjectUse.propTypes = {
   onClick: PropTypes.func.isRequired,
-  collapsed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  collapsed: PropTypes.bool,
+  name: PropTypes.string.isRequired
 }
 
 export default ProjectUse

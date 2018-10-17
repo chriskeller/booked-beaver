@@ -49,12 +49,12 @@ class ProjectsList extends React.Component {
 }
 
 ProjectsList.propTypes = {
-  resources: PropTypes.arrayOf(
+  projects: PropTypes.arrayOf(
       PropTypes.shape({
           id: PropTypes.number.isRequired,
           name: PropTypes.string.isRequired,
           collapsed: PropTypes.bool,
-          resources: PropTypes.array
+          projects: PropTypes.array
       }).isRequired
   ).isRequired,
   loading: PropTypes.bool.isRequired,
