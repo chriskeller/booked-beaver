@@ -35,6 +35,7 @@ const init = async () => {
         Inert,
         Vision,
         require('./routes/resources'),
+        require('./routes/projects'),
         {
           plugin: HapiSwagger,
           options: {
