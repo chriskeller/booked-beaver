@@ -6,7 +6,7 @@ import ResourcesList from '../components/ResourcesList'
  * Get the visible resources from the resourcesState object.
  * 
  * 
- * @param {*} state - The resourcesState object.
+ * @param {*} state - The state object.
  * @returns resources - Array of resource objects.
  */
 export const getVisibleResources = (state) => {
@@ -93,11 +93,9 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleResource: id => dispatch(toggleResource(id)),
         fetchResources: () => {
-            console.log("TEST")
             dispatch(fetchResources())
                 .then((response) => {
                    !response.error ? dispatch(fetchResourcesSuccess(response.payload.data)) : dispatch(fetchResourcesFailure(response.payload.data))
-                   //dispatch(fetchResourcesSuccess([]))
                 })
                 .catch((response) => {
                     dispatch(fetchResourcesFailure(response));

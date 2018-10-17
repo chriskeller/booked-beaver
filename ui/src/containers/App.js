@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import VisibleProjectsList from './VisibleProjectsList';
+import ProjectsListContainer from './ProjectsListContainer';
 import VisibleProjectsUse from './VisibleProjectsUse';
 import ResourcesListContainer from './ResourcesListContainer';
 import VisibleResourcesUse from './VisibleResourcesUse';
@@ -94,7 +94,7 @@ class App extends Component {
           {/* left column */ }
           <div className='col-sm-3'> 
             <div className='row'>
-              <div className='col'><VisibleProjectsList /></div>
+              <div className='col'><ProjectsListContainer /></div>
             </div>
             <div className='row'>
               <div className='col'><AddProject /></div>

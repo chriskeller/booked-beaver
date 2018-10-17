@@ -1,21 +1,28 @@
 import { connect } from 'react-redux'
-import { toggleProject } from '../actions/projectsActions'
-import ProjectList from '../components/ProjectList'
+import { toggleProject, fetchProjects, fetchProjectsSuccess, fetchProjectsFailure } from '../actions/projectsActions'
+import ProjectsList from '../components/ProjectsList'
 
+/**
+ * Get the visible projects from the projectsState object.
+ * 
+ * 
+ * @param {*} state - The state object.
+ * @returns projects - Array of project objects.
+ */
 export const getVisibleProjects = (state) => {
 
     //attach resources to each project
-    state.projects.forEach(project => attachResources(state, project))
+    state.projectsState.projectsList.projects.forEach(project => attachResources(state, project))
 
     switch (state.filter) {
         case 'SHOW_ALL':
-            return state.projects
+            return state.projectsState.projectsList.projects
             //    case 'SHOW_COMPLETED':
             //      return utilizations.filter(t => t.completed)
             //    case 'SHOW_ACTIVE':
             //      return utilizations.filter(t => !t.completed)
         default:
-            return state.projects
+            return state.projectsState.projectsList.projects
     }
 }
 
@@ -78,19 +85,30 @@ const attachResources = (state, project) => {
 
 const mapStateToProps = state => {
     return {
-        projects: getVisibleProjects(state)
+        projects: getVisibleProjects(state),
+        loading: state.projectsState.projectsList.loading,
+        error: state.projectsState.projectsList.error
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleProject: id => dispatch(toggleProject(id))
+        toggleProject: id => dispatch(toggleProject(id)),
+        fetchProjects: () => {
+            dispatch(fetchProjects())
+                .then((response) => {
+                   !response.error ? dispatch(fetchProjectsSuccess(response.payload.data)) : dispatch(fetchProjectsFailure(response.payload.data))
+                })
+                .catch((response) => {
+                    dispatch(fetchProjectsFailure(response));
+                })
+        }
     }
 }
 
-const VisibleProjectsList = connect(
+const ProjectsListContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProjectList)
+)(ProjectsList)
 
-export default VisibleProjectsList
+export default ProjectsListContainer

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { toggleProject } from '../actions/projectsActions'
 import { changeUtilization } from '../actions/utilizationsActions'
 import ProjectUseList from '../components/ProjectUseList'
-import { getVisibleProjects } from './VisibleProjectsList'
+import { getVisibleProjects } from './ProjectsListContainer'
 
 
 
