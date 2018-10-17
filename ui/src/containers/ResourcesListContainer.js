@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleResource, fetchResources, fetchResourcesSuccess, fetchResourcesFailure } from '../actions/resourcesActions'
+import { toggleResource, fetchResources } from '../actions/resourcesActions'
 import ResourcesList from '../components/ResourcesList'
 
 /**
@@ -92,15 +92,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         toggleResource: id => dispatch(toggleResource(id)),
-        fetchResources: () => {
-            dispatch(fetchResources())
-                .then((response) => {
-                   !response.error ? dispatch(fetchResourcesSuccess(response.payload.data)) : dispatch(fetchResourcesFailure(response.payload.data))
-                })
-                .catch((response) => {
-                    dispatch(fetchResourcesFailure(response));
-                })
-        }
+        fetchResources: () => dispatch(fetchResources())
     }
 }
 

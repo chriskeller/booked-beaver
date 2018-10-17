@@ -17,5 +17,5 @@ export default createStore(
     weeks
   }),
   {},
-  applyMiddleware(logger, thunk, promise)
+  applyMiddleware(thunk, promise, logger)  // order of middleware matters - logger last
 )

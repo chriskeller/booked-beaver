@@ -26,9 +26,39 @@ class ResourcesList extends React.Component {
         const { resources, loading, error } = this.props;
         if( loading ){
             // show loading
-            return <div>loading...</div>
+            return (
+                <table className='table table-sm table-bordered table-hover'>
+                    <thead className='thead-light'>
+                        <tr>
+                            <th scope='col'>#</th>
+                            <th scope='col'>Resource</th>
+                            <th scope='col'>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colSpan='3'>loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            );
         } else if ( error ) {
-            return <div className="alert alert-danger">Error: {error.message}</div>
+            return (
+                <table className='table table-sm table-bordered table-hover'>
+                    <thead className='thead-light'>
+                        <tr>
+                            <th scope='col'>#</th>
+                            <th scope='col'>Resource</th>
+                            <th scope='col'>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colSpan='3' className="alert alert-danger">Error: {error.message}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            );
         }
 
         return (

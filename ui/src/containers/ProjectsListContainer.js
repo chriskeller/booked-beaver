@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleProject, fetchProjects, fetchProjectsSuccess, fetchProjectsFailure } from '../actions/projectsActions'
+import { toggleProject, fetchProjects } from '../actions/projectsActions'
 import ProjectsList from '../components/ProjectsList'
 
 /**
@@ -94,15 +94,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         toggleProject: id => dispatch(toggleProject(id)),
-        fetchProjects: () => {
-            dispatch(fetchProjects())
-                .then((response) => {
-                   !response.error ? dispatch(fetchProjectsSuccess(response.payload.data)) : dispatch(fetchProjectsFailure(response.payload.data))
-                })
-                .catch((response) => {
-                    dispatch(fetchProjectsFailure(response));
-                })
-        }
+        fetchProjects: () => dispatch(fetchProjects())
     }
 }
 

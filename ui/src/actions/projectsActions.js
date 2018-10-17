@@ -25,17 +25,23 @@ const ROOT_URL = 'http://localhost:7500';
 
 /** Project list */
 export const fetchProjects = () => {
-    const request = axios({
-        method: 'get',
-        url: ROOT_URL + '/projects',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
 
-    return {
-        type: FETCH_PROJECTS,
-        payload: request
+    return (dispatch) => {
+        dispatch({ type: FETCH_PROJECTS });
+        return axios({
+                method: 'get',
+                url: ROOT_URL + '/projects',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                !response.error ? dispatch(fetchProjectsSuccess(response.data)) : dispatch(fetchProjectsFailure(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchProjectsFailure(error));
+            })
+
     }
 }
 

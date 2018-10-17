@@ -25,11 +25,41 @@ class ProjectsList extends React.Component {
   render() {
       const { projects, loading, error } = this.props;
       if( loading ){
-          // show loading
-          return <div>loading...</div>
-      } else if ( error ) {
-          return <div className="alert alert-danger">Error: {error.message}</div>
-      }
+        // show loading
+        return (
+            <table className='table table-sm table-bordered table-hover'>
+                <thead className='thead-light'>
+                    <tr>
+                        <th scope='col'>#</th>
+                        <th scope='col'>Resource</th>
+                        <th scope='col'>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colSpan='3'>loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        );
+    } else if ( error ) {
+        return (
+            <table className='table table-sm table-bordered table-hover'>
+                <thead className='thead-light'>
+                    <tr>
+                        <th scope='col'>#</th>
+                        <th scope='col'>Resource</th>
+                        <th scope='col'>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colSpan='3' className="alert alert-danger">Error: {error.message}</td>
+                    </tr>
+                </tbody>
+            </table>
+        );
+    }
 
       return (
           <table className='table table-sm table-bordered table-hover'>

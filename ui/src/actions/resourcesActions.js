@@ -25,17 +25,24 @@ const ROOT_URL = 'http://localhost:7500';
 
 /** Resource list */
 export const fetchResources = () => {
-    const request = axios({
-        method: 'get',
-        url: ROOT_URL + '/resources',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
 
-    return {
-        type: FETCH_RESOURCES,
-        payload: request
+    return (dispatch) => {
+        dispatch({ type: FETCH_RESOURCES });
+        return axios({
+                method: 'get',
+                url: ROOT_URL + '/resources',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log("response ", response)
+                !response.error ? dispatch(fetchResourcesSuccess(response.data)) : dispatch(fetchResourcesFailure(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchResourcesFailure(error));
+            })
+
     }
 }
 
@@ -57,7 +64,7 @@ export const fetchResourcesFailure = error => {
 export const createResource = (props) => {
     const request = axios({
         method: 'post',
-        data: JSON.stringify({name: props}),
+        data: JSON.stringify({ name: props }),
         url: ROOT_URL + '/resources',
         headers: {
             'Content-Type': 'application/json'
@@ -70,7 +77,7 @@ export const createResource = (props) => {
     }
 }
 
-export const createResourceSuccess  = newResource => {
+export const createResourceSuccess = newResource => {
     return {
         type: CREATE_RESOURCE_SUCCESS,
         payload: newResource
@@ -79,7 +86,7 @@ export const createResourceSuccess  = newResource => {
 
 export const createResourceFailure = error => {
     return {
-        type: CREATE_RESOURCE_FAILURE, 
+        type: CREATE_RESOURCE_FAILURE,
         payload: error
     }
 }
@@ -93,7 +100,7 @@ export const resetNewResource = () => {
 
 /** Delete resource */
 export const deleteResource = (id, tokenFromStorage) => {
-    const request = axios ({
+    const request = axios({
         method: 'delete',
         url: ROOT_URL + '/resources',
         headers: {
