@@ -1,7 +1,9 @@
 # Booking Beaver API
 
-RESTful API using hapi.js 
+RESTful API of the Booking Beaver project using hapi.js 
 
+
+## Docker Commands
 
 Build the docker image:
 ```
