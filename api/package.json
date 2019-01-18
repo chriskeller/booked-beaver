@@ -5,6 +5,7 @@
   "main": "server.js",
   "private": true,
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Christian Keller",
@@ -21,6 +22,7 @@
     "knex": "^0.15.2",
     "mysql": "^2.16.0",
     "node-persist": "^3.0.1",
+    "nodemon": "^1.18.9",
     "uuid": "^3.3.2",
     "vision": "5.3.3"
   }

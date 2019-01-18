@@ -7,7 +7,7 @@ const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 
 const hapiOptions = {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 7500,
     routes: {
       validate: {
@@ -17,7 +17,7 @@ const hapiOptions = {
             console.error('ValidationError:', err.message); // Better to use an actual logger here.
             throw Boom.badRequest(`Invalid request payload input`);
           } else {
-            // During development, log and respond with the full error.
+            // During development, log and respond with the full error. 
             console.error(err);
             throw err;
           }
@@ -42,7 +42,7 @@ const init = async () => {
             jsonPath: '/swagger.json',
             info: {
               title: 'Booked Beaver API',
-              description: 'REST API for Booked Beaver',
+              description: 'RESTful API for Booked Beaver',
               version: '1.0'
             }
           }

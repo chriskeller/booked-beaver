@@ -20,7 +20,7 @@ services:
     image: booking-beaver-api
     networks: ['alpha']
     ports: 
-      - '0.0.0.0:8080:8080'
+      - '0.0.0.0:7500:7500'
 
   ui:
     image: booking-beaver-ui
