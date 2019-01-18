@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    networks: ['alpha']
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root
+ 
+  adminer:
+    image: adminer
+    networks: ['alpha']
+    restart: always
+    ports: 
+      - '0.0.0.0:8080:8080'
+
+  api:
+    image: booking-beaver-api
+    networks: ['alpha']
+    ports: 
+      - '0.0.0.0:8080:8080'
+
+  ui:
+    image: booking-beaver-ui
+    networks: ['alpha']
+    ports: 
+      - '0.0.0.0:3000:3000'
+
+
+networks: {alpha: {}}
