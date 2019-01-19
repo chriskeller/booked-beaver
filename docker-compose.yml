@@ -3,30 +3,50 @@ version: '3.1'
 services:
   db:
     image: mysql
-    networks: ['alpha']
+    networks: 
+      - alpha
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+#    secrets:
+#      - db_root_password
+#      - db_dba_password
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root
+      MYSQL_USER: dba
+      MYSQL_DATABASE: beaverdb
+# these need to be replaced with secrets in production
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_PASSWOED: dbapwd
+#      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+#      MYSQL_PASSWORD_FILE: /run/secrets/db_dba_password
  
   adminer:
     image: adminer
-    networks: ['alpha']
+    networks: 
+      - alpha
     restart: always
     ports: 
       - '0.0.0.0:8080:8080'
 
   api:
     image: chrskllr/booking-beaver-api
-    networks: ['alpha']
+    networks: 
+      - alpha
     ports: 
       - '0.0.0.0:7500:7500'
 
   ui:
     image: chrskllr/booking-beaver-ui
-    networks: ['alpha']
+    networks: 
+      - alpha
     ports: 
       - '0.0.0.0:3000:3000'
 
+#secrets:
+#  db_root_password:
+#    external: true
+#  db_dba_password:
+#    external: true
 
-networks: {alpha: {}}
+
+networks: 
+  alpha:
