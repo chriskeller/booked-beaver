@@ -29,6 +29,8 @@ services:
 
   api:
     image: chrskllr/booking-beaver-api
+    depends_on:
+      - db
     networks: 
       - alpha
     ports: 
@@ -36,6 +38,8 @@ services:
 
   ui:
     image: chrskllr/booking-beaver-ui
+    depends_on:
+      - api
     networks: 
       - alpha
     ports: 
