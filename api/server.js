@@ -36,6 +36,7 @@ const init = async () => {
         Vision,
         require('./routes/resources'),
         require('./routes/projects'),
+        require('./routes/utilizations'),
         {
           plugin: HapiSwagger,
           options: {
