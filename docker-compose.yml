@@ -30,9 +30,13 @@ services:
   api:
     image: chrskllr/booking-beaver-api
     depends_on:
-      - db
+      - "db"
+    command: ["-c", "/app/wait-for.sh db:3306 && /app/run.sh start"]
+    entrypoint: ["/bin/sh"]
     networks: 
       - alpha
+    build:
+      context: api
     ports: 
       - '0.0.0.0:7500:7500'
 
@@ -42,6 +46,8 @@ services:
       - api
     networks: 
       - alpha
+    build:
+      context: ui
     ports: 
       - '0.0.0.0:3000:3000'
 

@@ -3,6 +3,10 @@ FROM node:8
 # disable strict-ssl in order to avoid error with self-signed certificates
 RUN npm config set strict-ssl false
 
+# add netcat for wait-for script
+RUN apt-get update && \
+ apt-get install -y netcat;
+
 ADD package-lock.json /package-lock.json
 ADD package.json /package.json
 
@@ -15,5 +19,5 @@ ADD . /app
 
 EXPOSE 7500
 
-ENTRYPOINT ["/bin/bash", "/app/run.sh"]
-CMD ["start"]
+# ENTRYPOINT ["/bin/bash", "/app/run.sh"]
+# CMD ["start"]
